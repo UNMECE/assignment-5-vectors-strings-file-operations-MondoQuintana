@@ -21,6 +21,22 @@ void add_pixel(std::vector <Pixel> &pixel_list, float r, float g, float b, int x
     std::cout <<"Pixel y value at index "<<z<<": "<<pixel_list[z].y<<std::endl;
 }
 
+void average_colors(std::vector<Pixel> &pixel_list, int z)
+{
+    float avgR = 0;
+    float avgG = 0;
+    float avgB = 0;
+    for (int i = 0; i < z; i++)
+    {
+        avgR += pixel_list[i].r;
+        avgG += pixel_list[i].g;
+        avgB += pixel_list[i].b;
+    }
+    std::cout<<"The average R value is: "<<avgR/z<<std::endl;
+    std::cout<<"The average G value is: "<<avgG/z<<std::endl;
+    std::cout<<"The average B value is: "<<avgB/z<<std::endl;
+}
+
 
 int main(int argc, char*argv[])
 {
@@ -84,6 +100,8 @@ int main(int argc, char*argv[])
             z++;
         }
         in.close();
+        //z = z-1;
+        average_colors(pixel_list, z);
         //std::cout <<"Pixel r value at index "<<z-1<<": "<<pixel_list[z-1].r<<std::endl;
     }
     return 0;

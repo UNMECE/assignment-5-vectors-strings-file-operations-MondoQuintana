@@ -5,16 +5,20 @@
 #include <iostream>
 #include <fstream>
 
-void add_pixel(std:: vector <Pixel*> &pixel_list, float r, float g, float b, int x, int y)
+void add_pixel(std::vector <Pixel> &pixel_list, float r, float g, float b, int x, int y, int z)
 {
-    Pixel *p = (Pixel*) malloc(sizeof(Pixel));
-    p->r=r;
-    p->g=g;
-    p->b=b;
-    p->x=x;
-    p->y=y;
-    pixel_list.push_back(p);
-    free(p);
+    pixel_list.push_back(Pixel());
+    pixel_list[z].r = r;
+    pixel_list[z].g = g;
+    pixel_list[z].b = b;
+    pixel_list[z].x = x;
+    pixel_list[z].y = y;
+    std::cout <<"Pixel added at index "<<z<<"."<<std::endl;
+    std::cout <<"Pixel r value at index "<<z<<": "<<pixel_list[z].r<<std::endl;
+    std::cout <<"Pixel g value at index "<<z<<": "<<pixel_list[z].g<<std::endl;
+    std::cout <<"Pixel b value at index "<<z<<": "<<pixel_list[z].b<<std::endl;
+    std::cout <<"Pixel x value at index "<<z<<": "<<pixel_list[z].x<<std::endl;
+    std::cout <<"Pixel y value at index "<<z<<": "<<pixel_list[z].y<<std::endl;
 }
 
 
@@ -30,6 +34,7 @@ int main(int argc, char*argv[])
     {
         std::string input;
         int i = 0;
+        int z = 0;
         int x = 0;
         int y = 0;
         float r = 0;
@@ -74,11 +79,12 @@ int main(int argc, char*argv[])
             b = data;
             //std::cout << input.substr(prev_find, input.length()+1-prev_find) << std::endl;
             std::cout << data << ", " << i << std::endl;
-            std::cout << x << ", " << y << ", " << r << ", " << g << ", " << b << ", " << std::endl;
-            add_pixel(pixel_list, r, g, b, x, y);
+            std::cout << x << ", " << y << ", " << r << ", " << g << ", " << b << std::endl;
+            add_pixel(pixel_list, r, g, b, x, y, z);
+            z++;
         }
         in.close();
-        //std::cout << pixel_list[1].r << std::endl;
+        //std::cout <<"Pixel r value at index "<<z-1<<": "<<pixel_list[z-1].r<<std::endl;
     }
     return 0;
 }

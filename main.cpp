@@ -39,8 +39,32 @@ void average_colors(std::vector<Pixel> &pixel_list, int z)
 
 void flip_vertically(std::vector<Pixel> &pixel_list, int z)
 {
+    int x = z;
     std::vector<Pixel> pixel_list_flipped;
-    pixel_list_flipped.push_back(Pixel());
+    for (int i = 0; i < z; i++)
+    {
+        pixel_list_flipped.push_back(Pixel());
+        pixel_list_flipped[i].r=pixel_list[x-1].r;
+        pixel_list_flipped[i].g=pixel_list[x-1].g;
+        pixel_list_flipped[i].b=pixel_list[x-1].b;
+        pixel_list_flipped[i].x=pixel_list[i].x;
+        pixel_list_flipped[i].y=pixel_list[i].y;
+        //std::cout <<"Pixel added at index "<<z<<"."<<std::endl;
+        std::cout <<"Pixel r value at index "<<i<<": "<<pixel_list_flipped[i].r<<std::endl;
+        std::cout <<"Pixel g value at index "<<i<<": "<<pixel_list_flipped[i].g<<std::endl;
+        std::cout <<"Pixel b value at index "<<i<<": "<<pixel_list_flipped[i].b<<std::endl;
+        std::cout <<"Pixel x value at index "<<i<<": "<<pixel_list_flipped[i].x<<std::endl;
+        std::cout <<"Pixel y value at index "<<i<<": "<<pixel_list_flipped[i].y<<std::endl;
+        x--;
+    }
+    std::ofstream outfile("flipped.dat");
+    for ( int i = 0; i < z; i++)
+    {
+        outfile<<pixel_list_flipped[i].x<<","<<pixel_list_flipped[i].y<<","<<pixel_list_flipped[i].r<<","<<pixel_list_flipped[i].g<<","<<pixel_list_flipped[i].b<<std::endl;
+    }
+    outfile.close();
+    std::cout<<"flipped.dat created. Reverse pixel list stored in file."<<std::endl;
+    
 }
 
 int main(int argc, char*argv[])
@@ -108,6 +132,7 @@ int main(int argc, char*argv[])
         //z = z-1;
         average_colors(pixel_list, z);
         //std::cout <<"Pixel r value at index "<<z-1<<": "<<pixel_list[z-1].r<<std::endl;
+        flip_vertically(pixel_list, z);
     }
     return 0;
 }

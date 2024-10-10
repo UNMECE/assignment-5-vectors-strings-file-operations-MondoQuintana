@@ -37,6 +37,11 @@ void average_colors(std::vector<Pixel> &pixel_list, int z)
     std::cout<<"The average B value is: "<<avgB/z<<std::endl;
 }
 
+void flip_vertically(std::vector<Pixel> &pixel_list, int z)
+{
+    std::vector<Pixel> pixel_list_flipped;
+    pixel_list_flipped.push_back(Pixel());
+}
 
 int main(int argc, char*argv[])
 {
